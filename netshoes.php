@@ -181,6 +181,6 @@ class Netshoes
 $netshoes = new Netshoes();
 //$netshoes->criarProduto();
 //$netshoes->atualizaPreco('7891437342374','407.00');
-//$netshoes->atualizaEstoque('7891437342374', '30');
+$netshoes->atualizaEstoque('7891437342374', '30');
 //$netshoes->recebeOrders();
 $netshoes->listarProdutos(0,20,0);
