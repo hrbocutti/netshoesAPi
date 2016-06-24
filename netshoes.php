@@ -165,7 +165,7 @@ class Netshoes
 		try {
 
 			$product_response = $products_api->listProducts($page, $size, $expand);
-			var_dump($product_response->getName('skus'));
+			var_dump($product_response->items);
 
 		} catch (ApiException $e) {
 			$error_resource = deserializeError($e->getResponseBody(), $api_client);
