@@ -24,7 +24,7 @@ require_once 'ApiMktpNetshoesV1.php';
 class Netshoes
 {
 
-	public function criarProduto()
+	public function criarProduto($listProdutos)
 	{
 
 		Configuration::$apiKey['client_id'] = 'ubvaJ5F1OEgW';
@@ -33,41 +33,31 @@ class Netshoes
 		$api_client = new ApiClient('http://api-sandbox.netshoes.com.br/api/v1');
 
 		$product_resource = new ProductResource();
-		$product_resource->product_id = '987456';
-		$product_resource->department = 'Futebol';
-		$product_resource->product_type = 'Agasalhos';
-		$product_resource->brand = 'Adidas';
-
-		$attribute_resource = new AttributeResource();
-		$attribute_resource->name = 'SEXO';
-		$attribute_resource->value = 'F';
-
-		$product_resource->attributes = array(
-			$attribute_resource
-			);
+		$product_resource->product_id = $listProdutos['sku'];
+		$product_resource->department = $listProdutos['categoriaPai'];
+		$product_resource->product_type = $listProdutos['categoriaFinal'];
+		$product_resource->brand = $listProdutos['marca'];
 
 		$product_resource->skus = array();
 
 		$sku_resource = new SkuResource();
-		$sku_resource->sku = '7891437342374';
-		$sku_resource->name = 'Agasalho Teste 01 Adidas';
-		$sku_resource->description = 'Agasalho, Branco, Adidas';
-		$sku_resource->color = 'Branco';
-		$sku_resource->gender = 'Mulher';
-		$sku_resource->size = 'G';
-		$sku_resource->ean_isbn = '16598198';
+		$sku_resource->sku = $listProdutos['sku'];
+		$sku_resource->name = $listProdutos['nome'];
+		$sku_resource->description = $listProdutos['descricao'];
+		$sku_resource->color = $listProdutos['cor'];
+		$sku_resource->size = $listProdutos['tamanho'];
+		$sku_resource->ean_isbn = $listProdutos['ean'];
 
 		$image_resource = new ImageResource();
-		$image_resource->url = 'http://7-themes.com/data_images/out/42/6914793-tropical-beach-images.jpg';
+		$image_resource->url = $listProdutos['imgUrl'];
 		$sku_resource->images = array (
 			$image_resource
 			);
 
-		$sku_resource->video = 'http://video/video1';
-		$sku_resource->height = 20.0;
-		$sku_resource->width = 10.0;
-		$sku_resource->depth = 44.0;
-		$sku_resource->weight = 65.0;
+		$sku_resource->height =$listProdutos['altura'];
+		$sku_resource->width = $listProdutos['largura'];
+		$sku_resource->depth = $listProdutos['profundidade'];
+		$sku_resource->weight = $listProdutos['peso'];
 
 		array_push($product_resource->skus, $sku_resource);
 
@@ -165,8 +155,13 @@ class Netshoes
 		try {
 
 			$product_response = $products_api->listProducts($page, $size, $expand);
-			var_dump($product_response->items);
+			//var_dump($product_response->items);
 
+			foreach ($product_response->items as $key) {
+				foreach ($key as $key => $value) {
+					var_dump($value);
+				}
+			}
 		} catch (ApiException $e) {
 			$error_resource = deserializeError($e->getResponseBody(), $api_client);
 			if ($error_resource == null) {
@@ -179,8 +174,9 @@ class Netshoes
 }
 
 $netshoes = new Netshoes();
-//$netshoes->criarProduto();
+$listaDeProduto = array('sku' => 'Z0077AAM' ,'categoriaPai' => 'Saúde e Fitness', 'categoriaFinal' => 'Garrafas', 'marca' => 'Wilson', 'nome' => 'Garrafa Wilson 500ML Amarelo - Wilson', 'descricao' => 'A Garrafa Wilson 500 ml Natural é a forma mais prática para armazenar água, isotônico ou sucos.', 'cor' => 'Amarelo', 'tamanho' =>'500ml', 'ean' => '7897135800895', 'imgUrl' => 'http://www.polihouse.com.br/media/extendware/ewimageopt/media/inline/28/8/garrafa-wilson-500ml-amarelo-wilson-53e.jpg' , 'altura' => '15', 'largura' => '15', 'profundidade' => '15', 'peso' =>  '100');
+//$netshoes->criarProduto($listaDeProduto);
 //$netshoes->atualizaPreco('7891437342374','407.00');
 //$netshoes->atualizaEstoque('7891437342374', '30');
 //$netshoes->recebeOrders();
-$netshoes->listarProdutos(0,20,0);
+$netshoes->listarProdutos(0,100,0);
