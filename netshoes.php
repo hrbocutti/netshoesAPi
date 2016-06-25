@@ -177,6 +177,6 @@ $netshoes = new Netshoes();
 $listaDeProduto = array('sku' => 'Z0077AAM' ,'categoriaPai' => 'Saúde e Fitness', 'categoriaFinal' => 'Garrafas', 'marca' => 'Wilson', 'nome' => 'Garrafa Wilson 500ML Amarelo - Wilson', 'descricao' => 'A Garrafa Wilson 500 ml Natural é a forma mais prática para armazenar água, isotônico ou sucos.', 'cor' => 'Amarelo', 'tamanho' =>'500ml', 'ean' => '7897135800895', 'imgUrl' => 'http://www.polihouse.com.br/media/extendware/ewimageopt/media/inline/28/8/garrafa-wilson-500ml-amarelo-wilson-53e.jpg' , 'altura' => '15', 'largura' => '15', 'profundidade' => '15', 'peso' =>  '100');
 //$netshoes->criarProduto($listaDeProduto);
 //$netshoes->atualizaPreco('7891437342374','407.00');
-//$netshoes->atualizaEstoque('7891437342374', '30');
+$netshoes->atualizaEstoque('7891437342374', '30');
 //$netshoes->recebeOrders();
 $netshoes->listarProdutos(0,100,0);
