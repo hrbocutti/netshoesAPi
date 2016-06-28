@@ -76,10 +76,10 @@ class OrdersApi {
         $queryParams['expand'] = $this->apiClient->toQueryValue($expand);
       }// query params
       if($order_start_date !== null) {
-        $queryParams['orderStartDate'] = $this->apiClient->toQueryValue($order_start_date);
+        //$queryParams['orderStartDate'] = $this->apiClient->toQueryValue($order_start_date);
       }// query params
       if($order_end_date !== null) {
-        $queryParams['orderEndDate'] = $this->apiClient->toQueryValue($order_end_date);
+        //$queryParams['orderEndDate'] = $this->apiClient->toQueryValue($order_end_date);
       }// query params
       if($order_status !== null) {
         $queryParams['orderStatus'] = $this->apiClient->toQueryValue($order_status);

@@ -388,7 +388,7 @@ class ApiClient {
       }
       $deserialized = $values;
     } elseif ($class == 'DateTime') {
-      $deserialized = new \DateTime($data);
+      $deserialized = new \DateTime();
     } elseif (in_array($class, array('string', 'int', 'float', 'double', 'bool', 'boolean', 'object'))) {
       settype($data, $class);
       $deserialized = $data;
