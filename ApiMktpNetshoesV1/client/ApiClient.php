@@ -184,6 +184,7 @@ class ApiClient {
     }
     else if ((is_object($postData) or is_array($postData)) and !in_array('Content-Type: multipart/form-data', $headers)) { // json model
       $postData = json_encode($this->sanitizeForSerialization($postData));
+        echo $postData . "Fim Json";
     }
 
     $url = $this->host . $resourcePath;
