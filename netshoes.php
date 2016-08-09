@@ -687,7 +687,7 @@ $sku = 'Z4377BRE';
 //$netshoes->getFlavors(); //Ok
 //$netshoes->getBrands(); //Ok
 //$netshoes->getColors(); //Ok
-$netshoes->getPriceBySku('Z4377BRH'); //Ok
+//$netshoes->getPriceBySku('Z4377BRH'); //Ok
 //$netshoes->getStockProduct('Z4377BRH'); // Ok
 //$netshoes->saveOrder(); // incompleto
 //$netshoes->getOrders(); // Ok
